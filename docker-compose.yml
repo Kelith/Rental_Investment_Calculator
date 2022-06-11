@@ -1,0 +1,19 @@
+version: '3.1'
+
+volumes:
+  static:
+
+services:
+  react:
+    build:
+        context: ./rentalsanalysis
+        dockerfile: Dockerfile
+    restart: always
+    environment:
+      CHOKIDAR_USEPOLLING: "true" # changes reload    
+    ports:
+        - 3003:3003
+    volumes:
+      - /rentalsanalysis/node_modules
+      - ./rentalsanalysis:/rentalsanalysis
+      - ./static:/static
